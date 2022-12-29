@@ -1,93 +1,23 @@
-<style>
-  body {
-    font-family: "Roboto", sans-serif;
-  }
-  #card-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .card > img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  .card {
-    height: 55vh;
-    width: calc((100% / 3) - 16px);
-    margin: 8px;
-    border-radius: 3px;
-    transition: all 200ms ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
-<div id="card-container"></div>
-<script defer>
-  const subReddits = [
-    'techhumor',
-    'programmerhumor',
-    'ITMemes',
-    'memes',
-    'meme',
-    'MemeEconomy',
-    'Memes_Of_The_Dank',
-    'AnimalMeme',
-    'AnimalMemes',
-    'HistoryMemes',
-    'HistoryMemeVault',
-    'nextfuckinglevel',
-    'iamverysmart',
-    'oldpeoplefacebook',
-    'ComedyCemetery',
-    'dankmemes',
-    'PrequelMemes',
-    'terriblefacebookmemes',
-    'PewdiepieSubmissions',
-    'funny',
-    'teenagersd'
-  ]
-  const cardContainer = document.getElementById("card-container");
-  const createCard = () => {
-    return new Promise((resolve) => {
-      const reddit = subReddits[Math.floor(Math.random() * subReddits.length)];
-      fetch(`https://meme-api.com/gimme/${reddit}`).then((value) =>
-        value.json().then((res) => {
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `<img src="${res.url}">`;
-          card.style.backgroundColor = "#111111";
-          cardContainer.appendChild(card);
-          resolve();
-        })
-      );
-    });
-  };
-  const addCards = async () => {
-    for (let i = 0; i <= 3; i++) {
-      await createCard();
-    }
-  };
-
-  const handleInfiniteScroll = () => {
-    window.removeEventListener("scroll", handleInfiniteScroll);
-    setTimeout(() => {
-      const endOfPage =
-        window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-      console.log(endOfPage);
-      if (endOfPage) {
-        addCards();
-      }
-      console.log("buh");
-      window.addEventListener("scroll", handleInfiniteScroll);
-    }, 1000);
-    console.log("triggered");
-  };
-
-  window.addEventListener("scroll", handleInfiniteScroll);
-  async function lol() {
-    while (document.body.scrollHeight <= document.body.clientHeight) {
-      await createCard();
-    }
-  }
-  lol();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme-Scroller</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit" rel="stylesheet">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!--Navbar-->
+  <div class = "navbar">
+    <a class = "navbarelem" href="#test">About</a>
+    <a class = "navbarelem" href="#test">GitHub</a>
+ </div>
+ <!--Content-->
+  <div class = "content" id = "content">
+    <a>Memes</a> 
+  </div>
+</body>
+</html>
