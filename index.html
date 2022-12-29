@@ -23,10 +23,34 @@
 </style>
 <div id="card-container"></div>
 <script defer>
+  const subReddits = [
+    'techhumor',
+    'programmerhumor',
+    'ITMemes',
+    'memes',
+    'meme',
+    'MemeEconomy',
+    'Memes_Of_The_Dank',
+    'AnimalMeme',
+    'AnimalMemes',
+    'HistoryMemes',
+    'HistoryMemeVault',
+    'nextfuckinglevel',
+    'iamverysmart',
+    'oldpeoplefacebook',
+    'ComedyCemetery',
+    'dankmemes',
+    'PrequelMemes',
+    'terriblefacebookmemes',
+    'PewdiepieSubmissions',
+    'funny',
+    'teenagersd'
+  ]
   const cardContainer = document.getElementById("card-container");
   const createCard = () => {
     return new Promise((resolve) => {
-      fetch("https://meme-api.com/gimme").then((value) =>
+      const reddit = subReddits[Math.floor(Math.random() * subReddits.length)];
+      fetch(`https://meme-api.com/gimme/${reddit}`).then((value) =>
         value.json().then((res) => {
           const card = document.createElement("div");
           card.className = "card";
