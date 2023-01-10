@@ -69,3 +69,7 @@ async function init() {
   }
 }
 init();
+
+function cookieButton(){
+  document.querySelector(".cookies").remove();
+}
